@@ -5,6 +5,7 @@ import com.example.apisicredi.services.VotoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/votos")
@@ -17,12 +18,17 @@ public class VotoController {
     }
 
     @PostMapping
-    public Voto votar(@RequestParam Long pautaId, @RequestParam String voto) {
-        return votoService.votar(pautaId, voto);
+    public Voto votar(@RequestParam Long pautaId, @RequestParam String associadoId, @RequestParam Boolean voto) {
+        return votoService.votar(pautaId, associadoId, voto);
     }
 
     @GetMapping("/{id}/contabilizar")
     public List<Voto> contabilizarVotos(@PathVariable Long id) {
         return votoService.contabilizarVotos(id);
+    }
+
+    @GetMapping("/{id}/resultado")
+    public Map<String, Long> resultadoVotacao(@PathVariable Long id) {
+        return votoService.resultadoVotacao(id);
     }
 }

@@ -8,7 +8,9 @@ import com.example.apisicredi.repositories.VotoRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class VotoService {
@@ -21,7 +23,7 @@ public class VotoService {
         this.pautaRepository = pautaRepository;
     }
 
-    public Voto votar(Long pautaId, String associadoId) {
+    public Voto votar(Long pautaId, String associadoId, Boolean voto) {
         Pauta pauta = pautaRepository.findById(pautaId).orElseThrow(() -> new ResourceNotFoundException("Pauta não encontrada"));
         if (pauta.getInicioSessao() == null || pauta.getFimSessao().isBefore(LocalDateTime.now())) {
             throw new IllegalStateException("A sessão de votação não está aberta");
@@ -38,5 +40,14 @@ public class VotoService {
 
     public List<Voto> contabilizarVotos(Long pautaId) {
         return votoRepository.findByPautaId(pautaId);
+    }
+
+    public Map<String, Long> resultadoVotacao(Long pautaId) {
+        List<Voto> votos = votoRepository.findByPautaId(pautaId);
+        Map<String, Long> resultado = new HashMap<>();
+        for (Voto voto : votos) {
+            resultado.merge(String.valueOf(voto.getVoto()), 1L, Long::sum);
+        }
+        return resultado;
     }
 }

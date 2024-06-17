@@ -28,9 +28,9 @@ public class Pauta {
     @Setter
     private LocalDateTime fimSessao;
 
-    @OneToMany(mappedBy = "pauta")
     @Getter
     @Setter
+    @OneToMany(mappedBy = "pauta")
     private List<Voto> votos;
 
 }

@@ -17,8 +17,8 @@ public class VotoController {
     }
 
     @PostMapping
-    public Voto votar(@RequestParam Long pautaId, @RequestParam String associadoId, @RequestParam Boolean voto) {
-        return votoService.votar(pautaId, associadoId, voto);
+    public Voto votar(@RequestParam Long pautaId, @RequestParam String voto) {
+        return votoService.votar(pautaId, voto);
     }
 
     @GetMapping("/{id}/contabilizar")

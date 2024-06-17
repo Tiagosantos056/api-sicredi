@@ -30,8 +30,6 @@ public class PautaService {
         Pauta pauta = pautaRepository.findById(pautaId).orElseThrow(() -> new ResourceNotFoundException("Pauta não encontrada"));
         pauta.setInicioSessao(LocalDateTime.now());
         pauta.setFimSessao(LocalDateTime.now().plusMinutes(duracao != null ? duracao : 1));
-        final Runnable closer = () -> fecharSessao(pautaId);
-        scheduler.schedule(closer, duracao != null ? duracao : 1, TimeUnit.MINUTES);
         return pautaRepository.save(pauta);
     }
 

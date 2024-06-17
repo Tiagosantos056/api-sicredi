@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface VotoRepository extends JpaRepository<Voto, Long> {
     boolean existsByPautaIdAndAssociadoId(Long pautaId, String associadoId);
-
     List<Voto> findByPautaId(Long pautaId);
 }

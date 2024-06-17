@@ -2,9 +2,10 @@ package com.example.apisicredi.controllers;
 
 import com.example.apisicredi.entities.Pauta;
 import com.example.apisicredi.services.PautaService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/pautas")
 public class PautaController {
 

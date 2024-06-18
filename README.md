@@ -37,6 +37,7 @@ mvn clean install
 * POST /pautas/{id}/abrir-sessao: Abre uma sessão de votação para uma pauta existente
 * POST /votos: Registra um novo voto
 * GET /votos/{id}/contabilizar: Contabiliza os votos para uma pauta específica 
+* GET /votos/{id}/resultado: Contabiliza os votos para uma pauta específica
 
 ## Contribuindo
 * Pull requests são bem-vindos. Para mudanças importantes, por favor, abra uma issue primeiro para discutir o que você gostaria de mudar.
